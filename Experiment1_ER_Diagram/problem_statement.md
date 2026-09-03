@@ -132,19 +132,3 @@ A popular restaurant wants to manage *reservations, orders, and billing*.
 | Reservation–Bill | 1:1 | Total | One bill per reservation |
 | Reservation–Waiter | 1:1 | Partial | Assigned waiter |
 
-###  Assumptions
-- Each reservation *occupies one table* only.  
-- Bills always generated *per reservation*.  
-- Service charges fixed percentage (not modeled).  
-
----
-##  Instructions for Students
-1. Complete *all three scenarios (A, B, C)*.  
-2. Identify *entities, relationships, and attributes* for each scenario.  
-3. Draw ER diagrams using *draw.io / diagrams.net* (or hand-drawn & scanned).  
-4. Fill in *Entities, Relationships, Assumptions* tables.  
-5. Export the completed Markdown (with diagrams) as a *single PDF*.  
-
----
-
-  End of Submission Template
