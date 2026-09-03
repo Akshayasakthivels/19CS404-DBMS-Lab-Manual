@@ -36,293 +36,157 @@ GROUP BY column_name
 HAVING condition;
 ```
 
-**Question 1**
---
-What is the average dosage prescribed for each medication?
+## Question 1:
 
-Sample tablePrescriptions Table
-```
-Medication     AvgDosage
--------------  ----------
-Ciprofloxacin  500.0
-Doxorubicin    60.0
-Ibuprofen      400.0
-Levothyroxine  50.0
-Lisinopril     10.0
-MMR            0.5
-Pending        0.0
-Prenatal vita  1.0
-Sertraline     50.0
-Topiramate     25.0
-```
+Find the minimum salary of all staff members.
 
 ```
-SELECT
-  Medication,
-  AVG(Dosage) AS AvgDosage
-FROM
-  Prescriptions
-GROUP BY
-  Medication;
+SELECT MIN(salary) AS minimum_salary
+FROM staff;
 
 ```
 
-**Output:**
+## Output:
+
+<img width="877" height="367" alt="image" src="https://github.com/user-attachments/assets/81e61a6e-840b-4718-8877-9912ede1288a" />
 
 
-![Screenshot 2025-04-29 171159](https://github.com/user-attachments/assets/cbf06455-04ba-4d64-899c-19b9f6285e48)
+## Question 2:
 
-**Question 2**
----
-How many patients are there in each city?
-```
-Sample table: Patients Table
-
-Address     TotalPatients
-----------  -------------
-Berlin      3
-Chicago     4
-Mexico      3
-```
-```
-select Address,count(*)
-as TotalPatients
-from Patients
-group by Address
-```
-
-**Output:**
-
-
-![Screenshot 2025-04-29 171804](https://github.com/user-attachments/assets/8d4957fe-fb4f-4c02-a28e-1f6c65c3430c)
-
-
-
-**Question 3**
----
-Write a SQL Query to find how many medications are prescribed for each patient?
-
-Sample table:MedicalRecords Table
-```
-PatientID   AvgMedications
-----------  --------------
-4           5
-6           1
-7           1
-8           3
+Find the maximum salary of all staff members.
 
 ```
-```
-SELECT PatientID,COUNT(*) AS 
-AvgMedications
-FROM MedicalRecords
-GROUP BY PatientID;
-```
-
-**Output:**
-
-
-![Screenshot 2025-04-29 172124](https://github.com/user-attachments/assets/03cd9d50-06b5-4812-9c53-729d7557944f)
-
-
-**Question 4**
----
-Write a SQL query to find the maximum purchase amount.
-
-Sample table: orders
-```
-ord_no      purch_amt   ord_date    customer_id  salesman_id
-
-----------  ----------  ----------  -----------  -----------
-
-70001       150.5       2012-10-05  3005         5002
-
-70009       270.65      2012-09-10  3001         5005
-
-70002       65.26       2012-10-05  3002         5001
-```
-```
-SELECT
-  MAX(purch_amt) AS MAXIMUM
-FROM
-  orders;
-```
-
-**Output:**
-
-
-![Screenshot 2025-04-29 172220](https://github.com/user-attachments/assets/3b0552ba-cb0f-47b2-a14f-4f41e3f13b8a)
-
-
-
-**Question 5**
----
-Write a SQL query to find the total income of employees aged 40 or above.
-
-Table: employee
-```
-name        type
-----------  ----------
-id          INTEGER
-name        TEXT
-age         INTEGER
-city        TEXT
-income      INTEGER
+SELECT MAX(salary) AS maximum_salary
+FROM staff;
 
 ```
-```
-SELECT
-  SUM(income) AS total_income
-FROM
-  employee
-WHERE
-  age >= 40;
-```
 
-**Output:**
+## Output:
+
+<img width="875" height="425" alt="image" src="https://github.com/user-attachments/assets/456a7ed9-5602-42df-b391-c0e389293913" />
 
 
-![Screenshot 2025-04-29 172310](https://github.com/user-attachments/assets/7dd0627c-5b47-45cd-9da2-b4c8b2308c33)
+## Question 3:
 
-
-**Question 6**
----
-Write a SQL query to find the number of employees whose age is greater than 32.
-
-Sample table: employee
+Find the total salary of all staff members.
 
 ```
-SELECT
-  COUNT(*) AS COUNT
-FROM
-  employee
-WHERE
-  age > 32;
-```
-
-**Output:**
-
-
-![Screenshot 2025-04-29 172421](https://github.com/user-attachments/assets/facbdbb0-4fdf-4680-a2f2-05496c32ebde)
-
-**Question 7**
----
-Write a SQL query to find the average length of names for people living in Chennai?
-
-Table: customer
-```
-name        type
-----------  ----------
-id          INTEGER
-name        TEXT   
-city        TEXT
-email       TEXT
-phone       INTEGER
-```
-```
-SELECT
-  AVG(LENGTH(name)) AS avg_name_length
-FROM
-  customer
-WHERE
-  city = 'Chennai';
-```
-
-**Output:**
-
-
-![Screenshot 2025-04-29 172506](https://github.com/user-attachments/assets/d162dc9e-2f89-4e8d-ace5-ffa4b385b7bb)
-
-
-**Question 8**
----
-Write the SQL query that accomplishes the grouping of data by joining date (jdate), calculates the maximum work hours for each date, and excludes dates where the maximum work hour is not greater than 12.
-
-Sample table: employee1
-```
-jdate       MAX(workhour)
-----------  -------------
-2004.0      15
-2006.0      15
-```
-```
-SELECT
-  jdate,
-  MAX(workhour) AS "MAX(workhour)"
-FROM
-  employee1
-GROUP BY
-  jdate
-HAVING
-  MAX(workhour) > 12;
-```
-
-**Output:**
-
-
-![Screenshot 2025-04-29 172603](https://github.com/user-attachments/assets/4f18be9a-1667-4bc1-825b-115d62e6f1c9)
-
-
-**Question 9**
----
-Write the SQL query that achieves the grouping of data by occupation, calculates the total work hours for each occupation, and excludes occupations where the total work hour sum is not greater than 20.
-
-Sample table: employee1
-```
-occupation  SUM(workhour)
-----------  -------------
-Business    30
-Doctor      30
-Engineer    24
-Teacher     27
-```
-```
-SELECT
-  occupation,
-  SUM(workhour) AS "SUM(workhour)"
-FROM
-  employee1
-GROUP BY
-  occupation
-HAVING
-  SUM(workhour) > 20;
-```
-
-**Output:**
-
-
-![Screenshot 2025-04-29 172703](https://github.com/user-attachments/assets/ed11db98-a58b-4cb2-934b-49a26899d26b)
-
-
-**Question 10**
----
-Write the SQL query that achieves the grouping of data by occupation, calculates the average work hours for each occupation, and includes only those occupations where the average work hour falls between 10 and 12.
-
-Sample table: employee1
+SELECT SUM(salary) AS total_salary
+FROM staff;
 
 ```
-occupation  AVG(workhour)
-----------  -------------
-Business    10.0
-Engineer    12.0
+
+## Output:
+
+<img width="898" height="355" alt="image" src="https://github.com/user-attachments/assets/0ce9b96e-9cb2-43ca-bc5f-97fa01fbb033" />
+
+
+## Question 4:
+
+Find the average salary of all staff members.
+
 ```
-```
-SELECT
-  occupation,
-  AVG(workhour) AS "AVG(workhour)"
-FROM
-  employee1
-GROUP BY
-  occupation
-HAVING
-  AVG(workhour) BETWEEN 10 AND 12;
+SELECT AVG(salary) AS average_salary
+FROM staff;
 ```
 
-**Output:**
+## Output:
+
+<img width="762" height="412" alt="image" src="https://github.com/user-attachments/assets/5aa14133-4491-4cd0-b5a2-a543b90875a1" />
+
+## Question 5:
+
+Find the total number of staff members.
+
+```
+SELECT COUNT(*) AS total_staff
+FROM staff;
+
+```
+
+## Output:
+
+<img width="852" height="402" alt="image" src="https://github.com/user-attachments/assets/9ca0af21-c454-44e5-9f13-a04825daa986" />
 
 
-![Screenshot 2025-04-29 172754](https://github.com/user-attachments/assets/2feda0d6-0e59-4af8-a0b6-15ea0c411c22)
+## Question 6:
 
+Find the number of staff members in each department.
+
+
+```
+SELECT department, COUNT(*) AS staff_count
+FROM staff
+GROUP BY department;
+
+```
+
+## Output:
+
+<img width="842" height="391" alt="image" src="https://github.com/user-attachments/assets/ee1992b0-f966-4f74-a4fd-4ae80f23802e" />
+
+## Question 7:
+
+Find the total salary paid in each department.
+
+```
+SELECT department, SUM(salary) AS total_salary
+FROM staff
+GROUP BY department;
+
+```
+
+## Output:
+
+<img width="882" height="393" alt="image" src="https://github.com/user-attachments/assets/750b4716-9719-43e9-bff4-abf92476b336" />
+
+
+## Question 8:
+
+Find the average salary in each department.
+
+```
+SELECT department, AVG(salary) AS average_salary
+FROM staff
+GROUP BY department;
+
+```
+
+## Output:
+
+<img width="901" height="355" alt="image" src="https://github.com/user-attachments/assets/07d340a9-e281-4761-8114-1020b69412e7" />
+
+## Question 9:
+
+Display departments having more than 2 staff members.
+
+```
+SELECT department, COUNT(*) AS staff_count
+FROM staff
+GROUP BY department
+HAVING COUNT(*) > 2;
+```
+
+## Output:
+
+<img width="842" height="367" alt="image" src="https://github.com/user-attachments/assets/8c4e3826-ec03-4e3e-bc8f-5aa77b51e44d" />
+
+
+## Question 10:
+
+Display departments whose total salary is greater than 150000.
+
+```
+SELECT department, SUM(salary) AS total_salary
+FROM staff
+GROUP BY department
+HAVING SUM(salary) > 150000;
+
+```
+
+## Output:
+
+<img width="906" height="347" alt="image" src="https://github.com/user-attachments/assets/e43a4f1b-8953-4211-80cb-e7e000b1d200" />
 
 
 
