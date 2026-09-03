@@ -45,247 +45,138 @@ Used to retrieve records from a table.
 ```sql
 SELECT column1, column2 FROM table_name WHERE condition;
 ```
+## Commom table 
+```
+CREATE TABLE Student (
+    student_id NUMBER,
+    student_name VARCHAR2(30),
+    department VARCHAR2(20),
+    marks NUMBER
+);
+```
+## Output:
+<img width="977" height="358" alt="image" src="https://github.com/user-attachments/assets/f1c3b018-b25d-43e7-aa49-ec4a26c44d80" />
+
 **Question 1**
---
-For products with a profit % less than 30% of selling price, update the selling price to provide a profit margin of 35% over cost price of the product in the products table.
+```
+INSERT INTO Student (student_id, student_name, department, marks)
+VALUES (101, 'Ravi', 'CSE', 85);
 
-PRODUCTS TABLE
-
-name               type
------------------  ---------------
-product_id         INT
-product_name       VARCHAR(100)
-category           VARCHAR(50)
-cost_price         DECIMAL(10,2)
-sell_price         DECIMAL(10,2)
-reorder_lvl        INT
-quantity           INT
-supplier_id        INT
-
-```sql
-UPDATE products
-SET sell_price = cost_price * 135/100
-WHERE ((sell_price - cost_price) / sell_price) * 100 < 30;
+COMMIT;
 ```
 
 **Output:**
 
-<img width="700" height="500" alt="Screenshot (14)" src="https://github.com/user-attachments/assets/ddf307e6-6fa8-4488-aed4-1faec189af5d" />
+<img width="1078" height="366" alt="image" src="https://github.com/user-attachments/assets/9e500895-7dc9-4291-97a1-8ace5a453dd1" />
 
 **Question 2**
 ---
-Write a SQL statement to Update the address to '58 Lakeview, Magnolia' where supplier ID is 5 in the suppliers table.
+```
+INSERT ALL
+    INTO Student VALUES (102, 'Priya', 'ECE', 78)
+    INTO Student VALUES (103, 'Arun', 'CSE', 92)
+    INTO Student VALUES (104, 'Meena', 'IT', 88)
+SELECT * FROM dual;
 
-Suppliers Table 
-
-name               type
------------------  ---------------
-supplier_id        INT
-supplier_name      VARCHAR(100)
-contact_person     VARCHAR(100)
-phone_number       VARCHAR(20)
-email              VARCHAR(100)
-address            VARCHAR(250)
-
-```sql
-UPDATE suppliers
-SET address = '58 Lakeview, Magnolia'
-WHERE supplier_id = 5;
+COMMIT;
 ```
 
 **Output:**
+<img width="955" height="387" alt="image" src="https://github.com/user-attachments/assets/606b90fd-2e81-48ef-8f6e-67846fe5b7b7" />
 
-<img width="700" height="500" alt="Screenshot (15)" src="https://github.com/user-attachments/assets/29063afe-4a7d-4f11-99d8-bcde52d18521" />
 
 **Question 3**
----
-Write a SQL query to reduce the reorder level by 30% where cost price is more than 50 and quantity in stock is less than 100 in the products table.
-
-Products Table 
-
-name          type       
-----------    ---------- 
-product_id     INT PRIMARY KEY        
-product_name   VARCHAR(10) 
-category       VARCHAR(50) 
-cost_price     DECIMAL(10) 
-sell_price     DECIMAL(10) 
-reorder_lvl    INT        
-quantity       INT        
-supplier_id    INT  
-
-```sql
-UPDATE products
-SET reorder_lvl = reorder_lvl * 70 / 100
-WHERE cost_price > 50
-  AND quantity < 100;
+```
+SELECT * FROM Student;
 ```
 
 **Output:**
 
-<img width="700" height="500" alt="Screenshot (16)" src="https://github.com/user-attachments/assets/e8d86cb0-5ac8-4d5d-9097-0b2601e66e9c" />
+<img width="1135" height="417" alt="image" src="https://github.com/user-attachments/assets/ce96048d-0242-4403-9ae0-5294657559c4" />
 
 **Question 4**
----
-Update the reorder level to 40 pieces for all products belonging to the 'Grocery' category in the products table.
-
-PRODUCTS TABLE
-
-name               type
------------------  ---------------
-product_id         INT
-product_name       VARCHAR(100)
-category           VARCHAR(50)
-cost_price         DECIMAL(10,2)
-sell_price         DECIMAL(10,2)
-reorder_lvl        INT
-quantity           INT
-supplier_id        INT
-
-```sql
-UPDATE products
-SET reorder_lvl = 40
-WHERE category = 'Grocery';
+```
+SELECT * FROM Student
+WHERE department = 'CSE';
 ```
 
 **Output:**
-
-<img width="700" height="500" alt="Screenshot (17)" src="https://github.com/user-attachments/assets/bb39145f-e4ca-49ba-a3f9-54b90e2387a7" />
+<img width="1102" height="433" alt="image" src="https://github.com/user-attachments/assets/0ad7ac2a-7aed-47a1-951c-e8808504419a" />
 
 **Question 5**
----
-Write a SQL statement to Increase the salary by 500 and email as 'updated' for employees with job ID 'SA_REP' and commission percentage greater than 0.15
+```
+UPDATE Student
+SET marks = 90
+WHERE student_id = 101;
 
-Employees table
-
----------------
-employee_id
-first_name
-last_name
-email
-phone_number
-hire_date
-job_id
-salary
-commission_pct
-manager_id
-department_id
-
-```sql
-UPDATE employees
-SET salary = salary + 500,
-    email = 'updated'
-WHERE job_id = 'SA_REP'
-  AND commission_pct > 0.15;
+COMMIT;
 ```
 
 **Output:**
+<img width="1043" height="381" alt="image" src="https://github.com/user-attachments/assets/dc6986a8-08b9-43db-8ee2-b74fa1086b71" />
 
-<img width="700" height="500" alt="Screenshot (18)" src="https://github.com/user-attachments/assets/0aeb5ac1-050c-4df6-afe6-e7e905cc44a5" />
 
 **Question 6**
----
-Write a SQL query to Delete customers from 'customer' table where 'CUST_NAME' has exactly 6 characters.
-```sql
-DELETE FROM customer
-WHERE LENGTH(CUST_NAME) = 6;
+```
+UPDATE Student
+SET department = 'CSE'
+WHERE student_id = 102;
+
+COMMIT;
 ```
 
 **Output:**
-
-<img width="700" height="500" alt="Screenshot (19)" src="https://github.com/user-attachments/assets/5a054ae3-29d8-4820-b530-a28186228380" />
+<img width="926" height="381" alt="image" src="https://github.com/user-attachments/assets/831b7c0d-008b-466d-8014-97714e625208" />
 
 **Question 7**
----
-Write a SQL query to remove rows from the table 'customer' with the following condition -
+```
+DELETE FROM Student
+WHERE student_id = 104;
 
-1. 'cust_city' should begin with the letter 'L',
-```sql
-DELETE FROM customer
-WHERE cust_city LIKE 'L%';
+COMMIT;
 ```
 
 **Output:**
+<img width="922" height="392" alt="image" src="https://github.com/user-attachments/assets/63634972-87c2-4432-a47a-8dcf6013e9b3" />
 
-<img width="700" height="500" alt="Screenshot (20)" src="https://github.com/user-attachments/assets/1a3c549c-71cc-4c34-acd9-4098cc5e000f" />
 
 **Question 8**
----
-Write a SQL query to Delete All Doctors with a NULL Last Name
-
-Sample table: Doctors
-
-attributes : doctor_id, first_name, last_name, specialization
-For example:
-
-Test	Result
-SELECT * FROM doctors;
-doctor_id   first_name  last_name   specialization
-----------  ----------  ----------  --------------
-1           John        Smith       Cardiology
-2           Emily       Johnson     Orthopedics
-3           Michael     Brown       Pediatrics
-4           Febin                   Cardiology
-doctor_id   first_name  last_name   specialization
-----------  ----------  ----------  --------------
-1           John        Smith       Cardiology
-2           Emily       Johnson     Orthopedics
-3           Michael     Brown       Pediatrics
-
-
-```sql
-DELETE FROM doctors
-WHERE last_name IS NULL;
+```
+SELECT * FROM Student
+WHERE marks > 85;
 ```
 
 **Output:**
-
-<img width="700" height="500" alt="Screenshot (21)" src="https://github.com/user-attachments/assets/2691f511-343e-4562-af3a-8c01857d45f5" />
+<img width="1027" height="318" alt="image" src="https://github.com/user-attachments/assets/c1efd02b-aa7f-4b1a-bd9a-5b15467af15d" />
 
 **Question 9**
----
-Write a SQL query to Delete customers whose 'GRADE' is greater than 2 and have a 'PAYMENT_AMT' less than the average 'PAYMENT_AMT' for all customers, or whose 'OUTSTANDING_AMT' is greater than 8000:
+```
+CREATE TABLE CSE_Students (
+    student_id NUMBER,
+    student_name VARCHAR2(30),
+    department VARCHAR2(20),
+    marks NUMBER
+);
+INSERT INTO CSE_Students
+SELECT * FROM Student
+WHERE department = 'CSE';
 
-Sample table: Customer
-
-+-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+  
-|CUST_CODE  | CUST_NAME   | CUST_CITY   | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO     | AGENT_CODE |
-+-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
-| C00013    | Holmes      | London      | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |       4000.00 | BBBBBBB      | A003       |
-| C00001    | Micheal     | New York    | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |       6000.00 | CCCCCCC      | A008       |
-| C00020    | Albert      | New York    | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |       6000.00 | BBBBSBB      | A008      
-
-```sql
-DELETE FROM customer
-WHERE (grade > 2
-       AND payment_amt < (SELECT AVG(payment_amt) FROM customer))
-   OR outstanding_amt > 8000;
+COMMIT;
+SELECT * FROM CSE_Students;
 ```
 
 **Output:**
-
-<img width="700" height="500" alt="Screenshot (23)" src="https://github.com/user-attachments/assets/3c86a700-7387-451f-9030-9465363642f3" />
+<img width="927" height="376" alt="image" src="https://github.com/user-attachments/assets/070c9ee6-4692-44f5-82ab-973415024654" />
 
 
 **Question 10**
----
-Show the categoryName and description from the categories table sorted by categoryName.
+DELETE FROM CSE_Students;
 
-name                     type
----------------       ---------------
-CategoryID           INTEGER
-CategoryName     VARCHAR(25)
-Description          VARCHAR(255)
-
-```sql
-SELECT CategoryName, Description
-FROM categories
-ORDER BY CategoryName;
-```
+COMMIT;
 
 **Output:**
+<img width="971" height="405" alt="image" src="https://github.com/user-attachments/assets/a2145cfb-c654-4a0d-8eb1-e3fdf913ab02" />
 
-<img width="700" height="500" alt="Screenshot (24)" src="https://github.com/user-attachments/assets/e1fe7ada-bdf4-495f-bdb3-0a87c28f6ace" />
 
 ## RESULT
 Thus, the SQL queries to implement DML commands have been executed successfully.
